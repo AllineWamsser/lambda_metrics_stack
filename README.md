@@ -10,25 +10,25 @@ It is designed as a *Junior-level portfolio project* to showcase basic understan
 * *AWS Lambda* function (Python 3.9)  
 * IAM Role* with minimal permissions  
 * CloudWatch Event Rule* to trigger Lambda every 5 minutes  
-* Inline Lambda code* (no external dependencies)  
+* Infrastructure as Code with AWS CDK Python
+* Simulate Kubernetes metrics (no external dependencies)
 
 ---
 
 ## Requirements
 
 * Python 3.9+  
-* AWS CLI configured (⁠ aws configure ⁠ or ⁠ aws sso login ⁠
+* AWS CLI configured aws configure or aws sso login
 * AWS CDK v2 installed  
 ---
 ## Architecture Diagram
-,,,
-mermaid
 
+```mermaid
 flowchart TD
-    CW[CloudWatch Event Rule<br>(rate: 5 min)] -->|Trigger| L[KubernetesMetricsFunction<br>(Lambda)]
-    L -->|HTTP Request| E[External Metrics Endpoint]
+    EB[EventBridge Rule<br>(cron: 12:00 UTC)] -->|Trigger| L[KubernetesMetricsLambda<br>(Lambda)]
+    L -->|Simulated Metrics| K8s[Kubernetes Cluster (demo)]
     L -->|Logs| CWL[CloudWatch Logs]
-,,,
+````
 ---
 ## Features
 
@@ -39,7 +39,7 @@ flowchart TD
 ---
 ## Features
 
-1. Install CDK and dependences
+1. Install dependencies
  ```bash 
 npm install -g aws-cdk
 python3 -m venv .venv
@@ -68,8 +68,8 @@ When triggered (via CloudWatch Event or manual test), the lambda logs somethin l
   "status": "success",
   "cluster": "demo-cluster",
   "metrics": {
-    "cpu_usage": "25%",
-    "memory_usage": "1.2Gi"
+    "cpu_usage": "42%",
+    "memory_usage": "1.4Gi"
   }
 }
 ````
