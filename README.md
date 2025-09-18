@@ -25,9 +25,20 @@ It is designed as a *Junior-level portfolio project* to showcase basic understan
 
 ```mermaid
 flowchart TD
-    CW[CloudWatch Event Rule\n(cron: 12:00 UTC)] -->|Trigger| L[KubernetesMetricsLambda\n(Lambda)]
-    L -->|Simulated Metrics| K8s[Kubernetes Cluster (demo)]
-    L -->|Logs| CWL[CloudWatch Logs]
+    subgraph AWS["☁️ AWS Cloud"]
+        CW["⏰ CloudWatch Event Rule<br>(cron: 12:00 UTC)"]
+        L["⚡ KubernetesMetricsLambda<br>(Lambda Function)"]
+        CWL["📝 CloudWatch Logs"]
+    end
+
+    subgraph K8S["☸️ Kubernetes Cluster (EKS - Demo)"]
+        E["📊 External Metrics Endpoint"]
+    end
+
+    %% Connections
+    CW -->|Trigger| L
+    L -->|Collect Metrics| E
+    L -->|Logs| CWL
 ```
 
 ## Features
