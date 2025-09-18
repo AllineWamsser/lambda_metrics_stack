@@ -28,8 +28,8 @@ flowchart TD
     CW[CloudWatch Event Rule\n(cron: 12:00 UTC)] -->|Trigger| L[KubernetesMetricsLambda\n(Lambda)]
     L -->|Simulated Metrics| K8s[Kubernetes Cluster (demo)]
     L -->|Logs| CWL[CloudWatch Logs]
-````
----
+```
+
 ## Features
 
 * AWS Lambda (Python 3.9 runtime)
