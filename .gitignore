@@ -1,0 +1,13 @@
+Environment and dependencies
+.venv
+pycache
+*.pyc
+
+CDK temporary files
+cdk.out/
+
+IDE specific files
+.vscode/
+
+AWS credentials or environment variables
+.env
