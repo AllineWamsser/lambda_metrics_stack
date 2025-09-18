@@ -23,7 +23,7 @@ It is designed as a *Junior-level portfolio project* to showcase basic understan
 ---
 ## Architecture Diagram
 
-```mermaid```mermaid
+```mermaid
 flowchart TD
     CW[CloudWatch Event Rule\n(cron: 12:00 UTC)] -->|Trigger| L[KubernetesMetricsLambda\n(Lambda)]
     L -->|Simulated Metrics| K8s[Kubernetes Cluster (demo)]
@@ -37,6 +37,7 @@ flowchart TD
 * Simulated Kubernetes metrics collection
 * Infrastructure as Code with AWS CDK (Python)
 ---
+
 ## Features
 
 1. Install dependencies
