@@ -23,9 +23,9 @@ It is designed as a *Junior-level portfolio project* to showcase basic understan
 ---
 ## Architecture Diagram
 
-```mermaid
+```mermaid```mermaid
 flowchart TD
-    EB[EventBridge Rule<br>(cron: 12:00 UTC)] -->|Trigger| L[KubernetesMetricsLambda<br>(Lambda)]
+    CW[CloudWatch Event Rule\n(cron: 12:00 UTC)] -->|Trigger| L[KubernetesMetricsLambda\n(Lambda)]
     L -->|Simulated Metrics| K8s[Kubernetes Cluster (demo)]
     L -->|Logs| CWL[CloudWatch Logs]
 ````
